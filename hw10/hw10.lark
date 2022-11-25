@@ -1,0 +1,14 @@
+rstring: "r\"" group* regex* pipe* group* regex*"\""
+
+?regex: character | word
+
+?group: "(" (pipe* group*  regex*) ")" 
+character: LETTER | NUMBER
+word: WORD
+?pipe: regex* "|" (regex* | group*)
+
+%ignore /\s+/
+%import common.LETTER
+%import common.NUMBER
+%import common.WORD
+
